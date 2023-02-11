@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -62,16 +61,27 @@ public class MainActivity extends Activity {
         email.setText("");
         age.setText("");
         contnum.setText("");
-
     }
 
     public void Get(View view) {
+        name = (TextView) findViewById(R.id.etName);
+        age = (TextView) findViewById(R.id.etAge);
         email = (TextView) findViewById(R.id.etEmail);
+        contnum = (TextView) findViewById(R.id.etcontnum);
         sharedpreferences = getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
 
+        if (sharedpreferences.contains(Name)) {
+            name.setText(sharedpreferences.getString(Name, ""));
+        }
+        if (sharedpreferences.contains(Age)) {
+            age.setText(sharedpreferences.getString(Age, ""));
+        }
         if (sharedpreferences.contains(Email)) {
             email.setText(sharedpreferences.getString(Email, ""));
+        }
+        if (sharedpreferences.contains(ContactNumber)) {
+            contnum.setText(sharedpreferences.getString(ContactNumber, ""));
         }
     }
 }
